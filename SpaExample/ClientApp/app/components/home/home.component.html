@@ -1,24 +1,17 @@
-<h1>Weather forecast</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
-
-<p *ngIf="!forecasts"><em>Loading...</em></p>
-
-<table class='table' *ngIf="forecasts">
+﻿<h1>Em espera - 3383-1000</h1>
+<h2 class="center-block">Total:{{ totalCalls }}</h2>
+<p *ngIf="!standByCall"><em>Loading...</em></p>
+<table class='table' *ngIf="standByCall">
 	<thead>
 		<tr>
-			<th>Date</th>
-			<th>Temp. (C)</th>
-			<th>Temp. (F)</th>
-			<th>Summary</th>
+			<th>Origem</th>
+			<th>Duração</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let forecast of forecasts">
-			<td>{{ forecast.dateFormatted }}</td>
-			<td>{{ forecast.temperatureC }}</td>
-			<td>{{ forecast.temperatureF }}</td>
-			<td>{{ forecast.summary }}</td>
+		<tr *ngFor="let call of standByCall.calls">
+			<td>{{ call.source }}</td>
+			<td>{{ call.duration }}</td>
 		</tr>
-	</tbody>
+	</tbody> 
 </table>

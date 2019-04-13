@@ -6,18 +6,23 @@ import { Http } from '@angular/http';
     templateUrl: './home.component.html'
 })
 export class HomeComponent {
-    public forecasts: WeatherForecast[] | undefined;
+    public standByCall: StandByCallsResponse | undefined;
+    public totalCalls = 0;
 
     constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
         http.get(baseUrl + 'api/SampleData/WeatherForecasts').subscribe(result => {
-            this.forecasts = result.json() as WeatherForecast[];
+            this.standByCall = result.json() as StandByCallsResponse;
+            this.totalCalls = this.standByCall.total;
         }, error => console.error(error));
     }
 }
 
-interface WeatherForecast {
-    dateFormatted: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
+interface CallResponseDetails {
+    source: string;
+    duration: Date;
+}
+
+interface StandByCallsResponse {
+    total: number;
+    calls: CallResponseDetails[]; 
 }
